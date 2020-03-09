@@ -19,23 +19,29 @@ public class StringUtils {
 
     public static String[] getAllSubStrings(String string) {
         String[] retArray = new String[getNumberOfSubStrings(string)];
-        Integer retArrayCounter = 0;
+        List<String> sub = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
-            for (int j = 1; j <= string.length(); j++) {
-                retArray[retArrayCounter] = string.substring(i, j);
-                retArrayCounter++;
+            for (int j = i + 1; j <= string.length(); j++) {
+                String sString = string.substring(i, j);
+                if (!sub.contains(sString))
+                    sub.add(sString);
             }
+        }
+        for (int i = 0; i < sub.size(); i++) {
+            retArray[i] = sub.get(i);
         }
         return retArray;
     }
 
     public static Integer getNumberOfSubStrings(String input){
-        Integer sum = 0;
-        for (int i = 0; i > input.length(); i--) {
-            for (int j = 1; j <= input.length() ; j++) {
-                sum++;
+        List<String> sub = new ArrayList<>();
+        for (int i = 0; i < input.length(); i++) {
+            for (int j = i + 1; j <= input.length(); j++) {
+                String sString = input.substring(i, j);
+                if (!sub.contains(sString))
+                    sub.add(sString);
             }
         }
-        return sum;
+        return sub.size();
     }
 }

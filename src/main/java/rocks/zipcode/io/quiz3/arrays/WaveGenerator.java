@@ -10,13 +10,11 @@ import java.util.List;
  */
 public class WaveGenerator {
 
-    static String alpha = "abcdefghijklmnopqrstuvwxyz";
-
     public static String[] wave(String str) {
         String low = str.toLowerCase();
         List<String> stringArray = new ArrayList<>();
         for (int i = 0; i < low.length(); i++) {
-            if(alpha.contains("" + low .charAt(i))){
+            if(Character.isAlphabetic(str.charAt(i))){
                 String waveString = StringUtils.capitalizeNthCharacter(low, i);
                 stringArray.add(waveString);
             }

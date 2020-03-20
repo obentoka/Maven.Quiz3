@@ -1,6 +1,7 @@
 package rocks.zipcode.io.quiz3.collections;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class Student {
     List<Lab> labs;
 
     public Student() {
-        labs = new ArrayList<>();
+        labs = new LinkedList<>();
     }
 
     public Student(List<Lab> labs) {
@@ -30,7 +31,10 @@ public class Student {
     }
 
     public void setLabStatus(String labName, LabStatus labStatus) {
-        getLab(labName).setStatus(labStatus);
+        if(labs.size() == 0)
+            throw new UnsupportedOperationException();
+        else
+            getLab(labName).setStatus(labStatus);
     }
 
     public void forkLab(Lab lab) {
@@ -45,9 +49,11 @@ public class Student {
     @Override
     public String toString() {
         StringBuilder retString = new StringBuilder();
-        for(Lab i : labs){
-            String s = String.format("%s > %s\n", i.labName, i.labStatus);
+        for (int i = labs.size()-1; i >= 0 ; i--) {
+            String s = String.format("%s > %s", labs.get(i).labName, labs.get(i).labStatus);
             retString.append(s);
+            if(i != 0)
+                retString.append("\n");
         }
         return retString.toString();
     }

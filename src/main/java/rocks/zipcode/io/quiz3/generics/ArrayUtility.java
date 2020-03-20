@@ -1,5 +1,9 @@
 package rocks.zipcode.io.quiz3.generics;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -30,6 +34,7 @@ public class ArrayUtility<SomeType> {
         return null;
     }
 
+    //NEED TO UNDERSTAND FUNCTIONS TO USE STREAM IN THE FUTURE
     public Integer getNumberOfOccurrences(SomeType valueToEvaluate) {
         Integer occurance = 0;
         for (int i = 0; i < array.length; i++) {
@@ -40,6 +45,15 @@ public class ArrayUtility<SomeType> {
     }
 
     public SomeType[] filter(Function<SomeType, Boolean> predicate) {
-        return null;
+        List<SomeType> retArray = new ArrayList<>();
+        for(SomeType i : array){
+            if(predicate.apply(i))
+                retArray.add(i);
+        }
+        SomeType[] retArr = Arrays.copyOf(array, retArray.size());
+        for (int i = 0; i < retArray.size(); i++) {
+            retArr[i] = retArray.get(i);
+        }
+        return retArr;
     }
 }

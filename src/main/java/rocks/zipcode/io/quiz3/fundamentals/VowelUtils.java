@@ -31,8 +31,6 @@ public class VowelUtils {
     }
 
     public static Boolean isVowel(Character character) {
-        if(vowels.contains(character.toString().toLowerCase()))
-            return true;
-        return false;
+        return vowels.contains(character.toString().toLowerCase());
     }
 }
